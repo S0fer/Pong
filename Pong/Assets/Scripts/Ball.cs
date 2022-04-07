@@ -7,8 +7,12 @@ public class Ball : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
     public Vector3 startPosition;
+    private SpriteRenderer sprite;
+    private SpriteRenderer playerToColor;
+
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         Launch();
     }
     
@@ -26,6 +30,18 @@ public class Ball : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
+        sprite.color = Color.white;
         Launch();
+    }
+
+    public void TouchedPlayer1()
+    {
+        playerToColor = GameObject.Find("Player1").GetComponent<SpriteRenderer>();
+        sprite.color = playerToColor.color;
+    }
+    public void TouchedPlayer2()
+    {
+        playerToColor = GameObject.Find("Player2").GetComponent<SpriteRenderer>();
+        sprite.color = playerToColor.color;
     }
 }

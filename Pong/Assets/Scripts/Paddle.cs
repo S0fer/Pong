@@ -33,4 +33,19 @@ public class Paddle : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
     }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ball"))
+        {
+            if(isPlayer1)
+            {
+                GameObject.Find("Ball").GetComponent<Ball>().TouchedPlayer1();
+            }
+            else
+            {
+                GameObject.Find("Ball").GetComponent<Ball>().TouchedPlayer2();
+            }
+        }
+    }
 }
